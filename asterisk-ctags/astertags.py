@@ -15,7 +15,7 @@ def parse_conf(filename):
         if reg:
             tag = reg.groups()[0]
             if tag.startswith('macro-'):
-
+                tag = tag[len('macro-'):]
             val[tag] = [tag, filename, '/^{0}$/;"'.format(line.strip()), 's']
     return val
 
