@@ -30,12 +30,12 @@ def parse_ael(filename):
 
 
 tags = {}
-for dirpath, dirnames, filenames in os.walk(CONF):
+for dirpath, dirnames, filenames in os.walk(CONF, followlinks=True):
     for i in filenames:
         if re.match(r'(sip|exten).*conf$', i):
-            tags.update(parse_conf(os.path.join(CONF,i)))
+            tags.update(parse_conf(os.path.join(dirpath,i)))
         elif i.endswith('.ael'):
-            tags.update(parse_ael(os.path.join(CONF,i)))
+            tags.update(parse_ael(os.path.join(dirpath,i)))
 
 
 outfile = open(TAGFILE, 'w')
