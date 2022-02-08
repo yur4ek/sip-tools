@@ -32,7 +32,7 @@ def parse_ael(filename):
 tags = {}
 for dirpath, dirnames, filenames in os.walk(CONF, followlinks=True):
     for i in filenames:
-        if re.match(r'(sip|exten).*conf$', i):
+        if re.match(r'^(sip|exten|pjsip|queue).*conf$', i):
             tags.update(parse_conf(os.path.join(dirpath,i)))
         elif i.endswith('.ael'):
             tags.update(parse_ael(os.path.join(dirpath,i)))
